@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const prompt = require('prompt')
 const puppeteer = require('puppeteer')
 const chalk = require('chalk')
@@ -25,19 +27,21 @@ const userPassSchema = {
 
 // MAIN LOOP
 (async () => {
+  const OUTPUT_FOLDER = process.argv[2]
+  if (!OUTPUT_FOLDER) {
+    console.log(chalk.red(`Output folder required! Usage: 'rmi-download ./folder'`))
+    process.exit(1)
+  }
+
+  if (!fs.existsSync(OUTPUT_FOLDER)) {
+    console.log(chalk.red(`Folder '${OUTPUT_FOLDER}' does not exist!`))
+    process.exit(2)
+  }
+
   console.log(chalk.cyan(asciify('RMI Paycheck Downloader', 1)))
   const browserPromise = browserSetup(LOGIN_PAGE)
   let browserFinished = false
   let browser, page
-  const OUTPUT_FOLDER = process.argv[2]
-      ? process.argv[2]
-      : path.join(__dirname, 'paychecks')
-
-  if (!fs.existsSync(OUTPUT_FOLDER)) {
-    console.log(chalk.red(`Folder '${OUTPUT_FOLDER}' does not exist!`))
-    process.exit(1)
-  }
-
   try {
 
     prompt.start()
