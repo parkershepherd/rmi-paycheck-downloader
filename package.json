@@ -1,0 +1,24 @@
+{
+  "name": "rmi-paycheck-downloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "rmi-download": "index.js"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "cli-progress": "^3.4.0",
+    "prompt": "^1.0.0",
+    "puppeteer": "^2.0.0"
+  }
+}
